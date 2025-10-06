@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>How to configure Linux, Steam In-Home Streaming and PS4 Controller on Chromebook | Z4Tech Interface</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="It has been a long while since the last time I update my blog. I guarantee that I don’t just waste my time on watching videos and playing video games lol. Why another post on this topic?There is a bun">
+<meta property="og:type" content="article">
+<meta property="og:title" content="How to configure Linux, Steam In-Home Streaming and PS4 Controller on Chromebook">
+<meta property="og:url" content="http://z4tech.github.io/2016-12-01/How-to-configure-Linux-Steam-and-PS4-Controller-on-Chromebook/">
+<meta property="og:site_name" content="Z4Tech Interface">
+<meta property="og:description" content="It has been a long while since the last time I update my blog. I guarantee that I don’t just waste my time on watching videos and playing video games lol. Why another post on this topic?There is a bun">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2016-12-02T02:59:27.000Z">
+<meta property="article:modified_time" content="2025-10-06T03:02:07.445Z">
+<meta property="article:author" content="Z4Tech">
+<meta property="article:tag" content="Z4Tech, Technology, Blog">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternative" href="/atom.xml" title="Z4Tech Interface" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+
+<meta name="generator" content="Hexo 8.0.0"></head>
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Z4Tech Interface</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        <a class="main-nav-link" target="_blank" rel="noopener" href="http://www.zhangchenguang1994.net/">WelcomePage</a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+
+      </nav>
+    </div>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main"><article id="post-How-to-configure-Linux-Steam-and-PS4-Controller-on-Chromebook" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2016-12-01/How-to-configure-Linux-Steam-and-PS4-Controller-on-Chromebook/" class="article-date">
+  <time datetime="2016-12-02T02:59:27.000Z" itemprop="datePublished">2016-12-01</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Misc/">Misc</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      How to configure Linux, Steam In-Home Streaming and PS4 Controller on Chromebook
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>It has been a long while since the last time I update my blog. I guarantee that I don’t just waste my time on watching videos and playing video games lol.</p>
+<h2 id="Why-another-post-on-this-topic"><a href="#Why-another-post-on-this-topic" class="headerlink" title="Why another post on this topic?"></a>Why another post on this topic?</h2><p>There is a bunch of guides on the web about setting up Linux on Chromebook, Installing Steam and using PS4 Controller on Linux, but no single article covers these topics together. And it turns out a little tricky to get all the thing done right. Also, some of these journals are outdated so far. And this one should provide you enough information to configure all these stuff without a headache. I’ve done all these on Asus CBE-431, it should also work on other models.</p>
+<h2 id="Install-Linux-with-Crouton"><a href="#Install-Linux-with-Crouton" class="headerlink" title="Install Linux with Crouton"></a>Install Linux with Crouton</h2><p>It is also possible to make a dual-boot Linux-ChromeOS on your device, but Crouton really provides a safe and efficient enough system to get things done. You can switch between two OS swiftly and the loss of performance is negligible.</p>
+<p>To do this, you should first get into Developer Mode. This will wipe out all the local data on your device. Be sure to backup all the files you need before any further actions. And then follow these steps:</p>
+<ul>
+<li>Turn off your laptop, using the combination of Esc, Refresh and Power buttons to reboot your Chromebook into Recovery Mode.</li>
+<li>After seeing the Recovery Mode screen with the yellow exclamation, press Ctrl+D. And then press Enter to confirm entering Developer Mode. Wait a little while (about 10 minutes) until it return to the screen with the yellow exclamation. Leave it alone until it reboots into Chrome OS.</li>
+<li>Some old models have a physical switch that you’ll have to flip in order to turn on Developer Mode. Check your instruction if you are not sure.</li>
+</ul>
+<p>After login to the system, download the crouton script from <a target="_blank" rel="noopener" href="https://github.com/dnschneid/crouton">here</a> or click <a target="_blank" rel="noopener" href="https://goo.gl/fd3zc">this</a> to download the latest version.</p>
+<p>Open a shell (Ctrl+Alt+T, type shell and hit enter), and run the following command:</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">sudo sh ~/Downloads/crouton -r trusty -t xfce</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">or add other targets <span class="keyword">if</span> you like</span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash"><span class="built_in">sudo</span> sh ~/Downloads/crouton -r trusty -t xfce,keyboard,audio,cli-extra</span></span><br></pre></td></tr></table></figure>
+
+<p>You can also change <code>xfce</code> to other desktops you want, for example <code>unity</code> which has a better look but requires more performance. And you can also add other targets such as <code>keyboard,audio,cli-extra</code> after <code>xfce</code> if you need.</p>
+<p>Ubuntu 14.04 Trusty is used, because the default 12.04 Precise could cause some trouble while installing steam.</p>
+<p>In the end of the installation, you will be asked the user and password for your linux system, choose anything you want. Remember the password, it will be used a lot later on.</p>
+<h2 id="Install-Steam-on-Ubuntu"><a href="#Install-Steam-on-Ubuntu" class="headerlink" title="Install Steam on Ubuntu"></a>Install Steam on Ubuntu</h2><p>First login to ubuntu by entering <code>enter-chroot</code> in the shell and <code>startxfce4</code> to start the xfce desktop (use other command for other desktops). Notice you can switch between Ubuntu and ChromeOS with Crtl+Alt+Shift+Left&#x2F;Right(at the top of the keyboard) in any time.</p>
+<p>And then, download the latest version of Steam for Linux from the <a target="_blank" rel="noopener" href="http://store.steampowered.com/about/">Steam website</a>. Start the terminal in linux, and install Ubuntu Software Center with the following command:</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash">You need to enter your password using <span class="built_in">sudo</span></span></span><br><span class="line">sudo apt-get install softeware-center</span><br></pre></td></tr></table></figure>
+
+<p>After that, find and click the Steam <code>.deb</code> package and install steam following the instructions. You should be able to login and launch Steam after this.</p>
+<h2 id="In-Home-Streaming"><a href="#In-Home-Streaming" class="headerlink" title="In-Home Streaming"></a>In-Home Streaming</h2><p><a target="_blank" rel="noopener" href="https://brismuth.com/">Brismuth</a> has a very good post on this topic. I just followed his steps. The ports used by Steam In-Home Streaming is by default blocked by ChromeOS. To unblock them, using the <code>iptables</code> command is the simplest way. First, install this command with <code>sudo apt-get install iptables</code> in the shell.</p>
+<p>And then create a new alias command to unblock all the ports needed:</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">echo &quot;alias steamStream=&#x27;</span><br><span class="line">sudo iptables -A INPUT -p udp --dport 27036 -j ACCEPT; </span><br><span class="line">sudo iptables -A INPUT -p udp --dport 37804 -j ACCEPT; </span><br><span class="line">sudo iptables -A INPUT -p tcp --dport 37804 -j ACCEPT; </span><br><span class="line">sudo iptables -A INPUT -p tcp --dport 27036 -j ACCEPT; </span><br><span class="line">sudo iptables -I INPUT -p udp --dport 27031 -j ACCEPT; </span><br><span class="line">sudo iptables -I INPUT -p udp --dport 27036 -j ACCEPT; </span><br><span class="line">sudo iptables -I INPUT -p tcp --dport 27036 -j ACCEPT; </span><br><span class="line">sudo iptables -I INPUT -p tcp --dport 27037 -j ACCEPT;&#x27;&quot; &gt;&gt; ~/.bash_aliases</span><br></pre></td></tr></table></figure>
+
+<p>Restart the terminal, you will be able to unblock the network with <code>steamStream</code> command. And make sure your host device and your chromebook are on the same network. You should be able to stream from your PC to your chromebook right now.</p>
+<h2 id="Setup-Sony-Dualshock-4-Wireless-Controller"><a href="#Setup-Sony-Dualshock-4-Wireless-Controller" class="headerlink" title="Setup Sony Dualshock 4 Wireless Controller"></a>Setup Sony Dualshock 4 Wireless Controller</h2><p>I really like the PS4 controllers, you can now use them on almost every devices - your PS4, PC, Mac and Linux. To use them in Linux on Chromebook, I think the best way is to use the <a target="_blank" rel="noopener" href="https://github.com/chrippa/ds4drv">ds4drv</a> package.</p>
+<p>To install this package, we must first install all the dependencies:</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get install python2.7-dev</span><br><span class="line">sudo apt-get install python-setuptools</span><br><span class="line">sudo apt-get install bluez-utils</span><br></pre></td></tr></table></figure>
+
+<p>And then install ds4drv by <code>sudo pip install ds4drv</code>.</p>
+<p>After this, you can pair your controllers. First, turn on the bluetooth on your chromebook in chromeOS, and then switch back to Linux, entering <code>sudo ds4drv</code> in the terminal. Pair the controller by press the share button and PS button together, the light in front of the controller should start blinking, and turn bright blue after successfully paired.</p>
+<p>You can also check how to pair multiple controllers and set the light on the controller on <a target="_blank" rel="noopener" href="https://github.com/chrippa/ds4drv">ds4drv</a> website.</p>
+<p>I’m having trouble with using the the PS4 controller in Big Picture Mode this way. I will update if I managed fix it.</p>
+<h2 id="Enjoy"><a href="#Enjoy" class="headerlink" title="Enjoy!"></a>Enjoy!</h2><p>Every time you want to use this setup, you should</p>
+<ul>
+<li>open up Ubuntu in the shell and start desktop</li>
+<li>Unblock the ports with <code>steamStream</code> in the Linux terminal</li>
+<li>Launch Steam on both chromebook and host machine</li>
+<li>Make sure your bluetooth on the chromebook is enabled and pair the controller after <code>sudo ds4drv</code> commmand</li>
+<li>Start streaming!</li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://z4tech.github.io/2016-12-01/How-to-configure-Linux-Steam-and-PS4-Controller-on-Chromebook/" data-id="cuidycninPnYHBr2K3GTWjReE" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2016-06-01/Update-Node-js/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">Update Node.js</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+
+<div id="disqus_thread"></div>
+<script type="text/javascript">
+    /* * * CONFIGURATION VARIABLES * * */
+    var disqus_shortname = 'z4techinterface';
+
+    /* * * DON'T EDIT BELOW THIS LINE * * */
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a target="_blank" href="https://disqus.com/?ref_noscript" rel="nofollow noopener">comments powered by Disqus.</a></noscript>
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Misc/">Misc</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Node-js/">Node.js</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/network/">network</a><span class="category-list-count">1</span></li></ul>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Node-js/" rel="tag">Node.js</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Static-Server/" rel="tag">Static Server</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/brew/" rel="tag">brew</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/gitbook/" rel="tag">gitbook</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ruby/" rel="tag">ruby</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ssh/" rel="tag">ssh</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/sudo/" rel="tag">sudo</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/update/" rel="tag">update</a><span class="tag-list-count">1</span></li></ul>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/Node-js/" style="font-size: 20px;">Node.js</a> <a href="/tags/Static-Server/" style="font-size: 10px;">Static Server</a> <a href="/tags/brew/" style="font-size: 10px;">brew</a> <a href="/tags/gitbook/" style="font-size: 10px;">gitbook</a> <a href="/tags/ruby/" style="font-size: 10px;">ruby</a> <a href="/tags/ssh/" style="font-size: 10px;">ssh</a> <a href="/tags/sudo/" style="font-size: 10px;">sudo</a> <a href="/tags/update/" style="font-size: 10px;">update</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/12/">December 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/06/">June 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/11/">November 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/09/">September 2015</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/08/">August 2015</a><span class="archive-list-count">1</span></li></ul>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recents</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2016-12-01/How-to-configure-Linux-Steam-and-PS4-Controller-on-Chromebook/">How to configure Linux, Steam In-Home Streaming and PS4 Controller on Chromebook</a>
+          </li>
+        
+          <li>
+            <a href="/2016-06-01/Update-Node-js/">Update Node.js</a>
+          </li>
+        
+          <li>
+            <a href="/2015-11-21/ssh-proxy/">Simple Proxy by SSH Tunneling</a>
+          </li>
+        
+          <li>
+            <a href="/2015-09-27/Never-Try-sudo-brew/">sudo brew - Do not Try and How to Recover</a>
+          </li>
+        
+          <li>
+            <a href="/2015-09-26/nodejsStaticServer/">Static Server in Node.js</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2025 Z4Tech<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+<a class="main-nav-link" target="_blank" rel="noopener" href="http://www.zhangchenguang1994.net/">WelcomePage</a>
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+  
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+  </div>
+</body>
+</html>

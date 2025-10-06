@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>Convert Anki Flashcards into Gitbook | Z4Tech Interface</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="Anki is a great flashcard tool for memorizing new words, and here how to convert the flashcard desk in anki to wordlists in pdf, epub and html.  This procedure is done on Mac OSX 10.10, and probably w">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Convert Anki Flashcards into Gitbook">
+<meta property="og:url" content="http://z4tech.github.io/2015-09-01/Anki2Gitbook/">
+<meta property="og:site_name" content="Z4Tech Interface">
+<meta property="og:description" content="Anki is a great flashcard tool for memorizing new words, and here how to convert the flashcard desk in anki to wordlists in pdf, epub and html.  This procedure is done on Mac OSX 10.10, and probably w">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="http://7xlifa.com1.z0.glb.clouddn.com/imganki-sql.png">
+<meta property="article:published_time" content="2015-09-01T20:42:41.000Z">
+<meta property="article:modified_time" content="2025-10-06T03:02:07.445Z">
+<meta property="article:author" content="Z4Tech">
+<meta property="article:tag" content="gitbook">
+<meta property="article:tag" content="ruby">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://7xlifa.com1.z0.glb.clouddn.com/imganki-sql.png">
+  
+    <link rel="alternative" href="/atom.xml" title="Z4Tech Interface" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+
+<meta name="generator" content="Hexo 8.0.0"></head>
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Z4Tech Interface</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        <a class="main-nav-link" target="_blank" rel="noopener" href="http://www.zhangchenguang1994.net/">WelcomePage</a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+
+      </nav>
+    </div>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main"><article id="post-Anki2Gitbook" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2015-09-01/Anki2Gitbook/" class="article-date">
+  <time datetime="2015-09-01T20:42:41.000Z" itemprop="datePublished">2015-09-01</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Misc/">Misc</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Convert Anki Flashcards into Gitbook
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>Anki is a great flashcard tool for memorizing new words, and here how to convert the flashcard desk in anki to wordlists in pdf, epub and html.  This procedure is done on Mac OSX 10.10, and probably work similarly on other Unix system.</p>
+<p>Recently I’ve been working on GRE vocabulary, and Anki is a well-known multi-platform app for this. There are many great sets of cards and sometimes you just want to use them else where such as creating some wordlist. And this time, I need some wordlists from GRE3000, a popular book in China. I bought the printed version, but it is in alphabetical order. Luckily someone has made an Anki desk for it!</p>
+<p>The vocabulary desks <code>.apkg</code> files are just <code>.zip</code> packages, you can just unzip it with command line:  </p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">unzip the_desk_name.apkg</span><br></pre></td></tr></table></figure>  
+<p>There are several files there, what we need is the <code>.anki2</code> file which is basically a sqlite database. Change the extension to sqlite and you can do anything with it! I just open it up with the Firefox extension - SQLite Manager.  </p>
+<p><img src="http://7xlifa.com1.z0.glb.clouddn.com/imganki-sql.png" alt="img SQLite Manager"></p>
+<p>Run the following SQL query to get the data we need, and then save it as csv(with or without header).</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">SELECT sfld, flds FROM notes</span><br></pre></td></tr></table></figure>  
+
+<p>Then we need to set up the <code>gitbook</code> engine. Firstly, nodejs and npm is needed, following the guide on the <a target="_blank" rel="noopener" href="http://nodejs.org/">website</a>. And then install gitbook-cli and initialize a project.</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">npm install gitbook-cli -g</span><br><span class="line">cd your_workspace</span><br><span class="line">mkdir book</span><br><span class="line">cd book</span><br><span class="line">gitbook init</span><br><span class="line">cp list.csv .</span><br></pre></td></tr></table></figure>  
+
+<p>And then, I wrote a ruby script to generate the markdown files needed to create the book.</p>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">require</span> <span class="string">&#x27;csv&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#size of the wordlists</span></span><br><span class="line">list_size = <span class="number">20.0</span></span><br><span class="line">words = <span class="variable constant_">CSV</span>.read(<span class="string">&#x27;list.csv&#x27;</span>)</span><br><span class="line">words.delete_at(<span class="number">0</span>)  <span class="comment">#if there is a header line</span></span><br><span class="line">words = words.shuffle</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">summary = <span class="title class_">File</span>.new(<span class="string">&#x27;SUMMARY.md&#x27;</span>, <span class="string">&#x27;w&#x27;</span>)</span><br><span class="line">summary.puts <span class="string">&quot;#Content\n&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> <span class="number">1</span>..(words.length/list_size).ceil</span><br><span class="line">  file = <span class="title class_">File</span>.new(<span class="string">&#x27;./src/List&#x27;</span>+i.to_s+<span class="string">&#x27;.md&#x27;</span>, <span class="string">&#x27;w&#x27;</span>)</span><br><span class="line">  file.puts <span class="string">&quot;#List<span class="subst">#&#123;i&#125;</span>&quot;</span></span><br><span class="line">  summary.puts <span class="string">&quot;* [List<span class="subst">#&#123;i&#125;</span>](src/List<span class="subst">#&#123;i&#125;</span>.md)  &quot;</span></span><br><span class="line">  </span><br><span class="line">  <span class="comment">#you might need to change this part to fit different desks</span></span><br><span class="line">  <span class="keyword">for</span> i <span class="keyword">in</span> <span class="number">1</span>..list_size</span><br><span class="line">    file.puts <span class="string">&quot;\n\n---\n\n&quot;</span> <span class="keyword">unless</span> i == <span class="number">1</span></span><br><span class="line">    content = words.shift()</span><br><span class="line">    <span class="keyword">if</span> content.<span class="literal">nil</span>?</span><br><span class="line">      <span class="keyword">break</span></span><br><span class="line">    <span class="keyword">end</span></span><br><span class="line">    file.puts content[<span class="number">1</span>]</span><br><span class="line">  <span class="keyword">end</span></span><br><span class="line">  file.close</span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line">summary.close</span><br></pre></td></tr></table></figure>  
+
+<p>Save this script and execute it at the folder. And don’t forget to write something in the <code>README.md</code>. Now you can use <code>gitbook serve</code> to see the web version of the book.  </p>
+<p>To make a file version, we need to <a target="_blank" rel="noopener" href="http://calibre-ebook.com/download">download</a> and install <code>Calibre</code> and use the <code>ebook-convert</code> tool inside. For Mac OSX, we need to add the tool to the <code>$PATH</code>.</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">export PATH=$PATH:/Applications/calibre.app/Contents/MacOS</span><br></pre></td></tr></table></figure>  
+
+<p>Finally, we shall compile the book!</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">cd ..</span><br><span class="line">gitbook epub /book</span><br></pre></td></tr></table></figure>  
+<p>And then you’ll see the book inside your work folder.</p>
+<p>Have fun!</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://z4tech.github.io/2015-09-01/Anki2Gitbook/" data-id="cuid2xiPPbhqRD2aDCq-4MGXE" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/gitbook/" rel="tag">gitbook</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ruby/" rel="tag">ruby</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2015-09-26/nodejsStaticServer/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          Static Server in Node.js
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2015-08-26/hello/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">Hello, World!</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+
+<div id="disqus_thread"></div>
+<script type="text/javascript">
+    /* * * CONFIGURATION VARIABLES * * */
+    var disqus_shortname = 'z4techinterface';
+
+    /* * * DON'T EDIT BELOW THIS LINE * * */
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a target="_blank" href="https://disqus.com/?ref_noscript" rel="nofollow noopener">comments powered by Disqus.</a></noscript>
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Misc/">Misc</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Node-js/">Node.js</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/network/">network</a><span class="category-list-count">1</span></li></ul>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Node-js/" rel="tag">Node.js</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Static-Server/" rel="tag">Static Server</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/brew/" rel="tag">brew</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/gitbook/" rel="tag">gitbook</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ruby/" rel="tag">ruby</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ssh/" rel="tag">ssh</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/sudo/" rel="tag">sudo</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/update/" rel="tag">update</a><span class="tag-list-count">1</span></li></ul>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/Node-js/" style="font-size: 20px;">Node.js</a> <a href="/tags/Static-Server/" style="font-size: 10px;">Static Server</a> <a href="/tags/brew/" style="font-size: 10px;">brew</a> <a href="/tags/gitbook/" style="font-size: 10px;">gitbook</a> <a href="/tags/ruby/" style="font-size: 10px;">ruby</a> <a href="/tags/ssh/" style="font-size: 10px;">ssh</a> <a href="/tags/sudo/" style="font-size: 10px;">sudo</a> <a href="/tags/update/" style="font-size: 10px;">update</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/12/">December 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/06/">June 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/11/">November 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/09/">September 2015</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/08/">August 2015</a><span class="archive-list-count">1</span></li></ul>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recents</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2016-12-01/How-to-configure-Linux-Steam-and-PS4-Controller-on-Chromebook/">How to configure Linux, Steam In-Home Streaming and PS4 Controller on Chromebook</a>
+          </li>
+        
+          <li>
+            <a href="/2016-06-01/Update-Node-js/">Update Node.js</a>
+          </li>
+        
+          <li>
+            <a href="/2015-11-21/ssh-proxy/">Simple Proxy by SSH Tunneling</a>
+          </li>
+        
+          <li>
+            <a href="/2015-09-27/Never-Try-sudo-brew/">sudo brew - Do not Try and How to Recover</a>
+          </li>
+        
+          <li>
+            <a href="/2015-09-26/nodejsStaticServer/">Static Server in Node.js</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2025 Z4Tech<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+<a class="main-nav-link" target="_blank" rel="noopener" href="http://www.zhangchenguang1994.net/">WelcomePage</a>
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+  
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+  </div>
+</body>
+</html>

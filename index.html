@@ -1,0 +1,551 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>Z4Tech Interface</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta property="og:type" content="website">
+<meta property="og:title" content="Z4Tech Interface">
+<meta property="og:url" content="http://z4tech.github.io/">
+<meta property="og:site_name" content="Z4Tech Interface">
+<meta property="og:locale" content="en_US">
+<meta property="article:author" content="Z4Tech">
+<meta property="article:tag" content="Z4Tech, Technology, Blog">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternative" href="/atom.xml" title="Z4Tech Interface" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+
+<meta name="generator" content="Hexo 8.0.0"></head>
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Z4Tech Interface</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        <a class="main-nav-link" target="_blank" rel="noopener" href="http://www.zhangchenguang1994.net/">WelcomePage</a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+
+      </nav>
+    </div>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main">
+  
+    <article id="post-How-to-configure-Linux-Steam-and-PS4-Controller-on-Chromebook" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2016-12-01/How-to-configure-Linux-Steam-and-PS4-Controller-on-Chromebook/" class="article-date">
+  <time datetime="2016-12-02T02:59:27.000Z" itemprop="datePublished">2016-12-01</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Misc/">Misc</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016-12-01/How-to-configure-Linux-Steam-and-PS4-Controller-on-Chromebook/">How to configure Linux, Steam In-Home Streaming and PS4 Controller on Chromebook</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>It has been a long while since the last time I update my blog. I guarantee that I don’t just waste my time on watching videos and playing video games lol.</p>
+<h2 id="Why-another-post-on-this-topic"><a href="#Why-another-post-on-this-topic" class="headerlink" title="Why another post on this topic?"></a>Why another post on this topic?</h2><p>There is a bunch of guides on the web about setting up Linux on Chromebook, Installing Steam and using PS4 Controller on Linux, but no single article covers these topics together. And it turns out a little tricky to get all the thing done right. Also, some of these journals are outdated so far. And this one should provide you enough information to configure all these stuff without a headache. I’ve done all these on Asus CBE-431, it should also work on other models.</p>
+<h2 id="Install-Linux-with-Crouton"><a href="#Install-Linux-with-Crouton" class="headerlink" title="Install Linux with Crouton"></a>Install Linux with Crouton</h2><p>It is also possible to make a dual-boot Linux-ChromeOS on your device, but Crouton really provides a safe and efficient enough system to get things done. You can switch between two OS swiftly and the loss of performance is negligible.</p>
+<p>To do this, you should first get into Developer Mode. This will wipe out all the local data on your device. Be sure to backup all the files you need before any further actions. And then follow these steps:</p>
+<ul>
+<li>Turn off your laptop, using the combination of Esc, Refresh and Power buttons to reboot your Chromebook into Recovery Mode.</li>
+<li>After seeing the Recovery Mode screen with the yellow exclamation, press Ctrl+D. And then press Enter to confirm entering Developer Mode. Wait a little while (about 10 minutes) until it return to the screen with the yellow exclamation. Leave it alone until it reboots into Chrome OS.</li>
+<li>Some old models have a physical switch that you’ll have to flip in order to turn on Developer Mode. Check your instruction if you are not sure.</li>
+</ul>
+<p>After login to the system, download the crouton script from <a target="_blank" rel="noopener" href="https://github.com/dnschneid/crouton">here</a> or click <a target="_blank" rel="noopener" href="https://goo.gl/fd3zc">this</a> to download the latest version.</p>
+<p>Open a shell (Ctrl+Alt+T, type shell and hit enter), and run the following command:</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">sudo sh ~/Downloads/crouton -r trusty -t xfce</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">or add other targets <span class="keyword">if</span> you like</span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash"><span class="built_in">sudo</span> sh ~/Downloads/crouton -r trusty -t xfce,keyboard,audio,cli-extra</span></span><br></pre></td></tr></table></figure>
+
+<p>You can also change <code>xfce</code> to other desktops you want, for example <code>unity</code> which has a better look but requires more performance. And you can also add other targets such as <code>keyboard,audio,cli-extra</code> after <code>xfce</code> if you need.</p>
+<p>Ubuntu 14.04 Trusty is used, because the default 12.04 Precise could cause some trouble while installing steam.</p>
+<p>In the end of the installation, you will be asked the user and password for your linux system, choose anything you want. Remember the password, it will be used a lot later on.</p>
+<h2 id="Install-Steam-on-Ubuntu"><a href="#Install-Steam-on-Ubuntu" class="headerlink" title="Install Steam on Ubuntu"></a>Install Steam on Ubuntu</h2><p>First login to ubuntu by entering <code>enter-chroot</code> in the shell and <code>startxfce4</code> to start the xfce desktop (use other command for other desktops). Notice you can switch between Ubuntu and ChromeOS with Crtl+Alt+Shift+Left&#x2F;Right(at the top of the keyboard) in any time.</p>
+<p>And then, download the latest version of Steam for Linux from the <a target="_blank" rel="noopener" href="http://store.steampowered.com/about/">Steam website</a>. Start the terminal in linux, and install Ubuntu Software Center with the following command:</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash">You need to enter your password using <span class="built_in">sudo</span></span></span><br><span class="line">sudo apt-get install softeware-center</span><br></pre></td></tr></table></figure>
+
+<p>After that, find and click the Steam <code>.deb</code> package and install steam following the instructions. You should be able to login and launch Steam after this.</p>
+<h2 id="In-Home-Streaming"><a href="#In-Home-Streaming" class="headerlink" title="In-Home Streaming"></a>In-Home Streaming</h2><p><a target="_blank" rel="noopener" href="https://brismuth.com/">Brismuth</a> has a very good post on this topic. I just followed his steps. The ports used by Steam In-Home Streaming is by default blocked by ChromeOS. To unblock them, using the <code>iptables</code> command is the simplest way. First, install this command with <code>sudo apt-get install iptables</code> in the shell.</p>
+<p>And then create a new alias command to unblock all the ports needed:</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">echo &quot;alias steamStream=&#x27;</span><br><span class="line">sudo iptables -A INPUT -p udp --dport 27036 -j ACCEPT; </span><br><span class="line">sudo iptables -A INPUT -p udp --dport 37804 -j ACCEPT; </span><br><span class="line">sudo iptables -A INPUT -p tcp --dport 37804 -j ACCEPT; </span><br><span class="line">sudo iptables -A INPUT -p tcp --dport 27036 -j ACCEPT; </span><br><span class="line">sudo iptables -I INPUT -p udp --dport 27031 -j ACCEPT; </span><br><span class="line">sudo iptables -I INPUT -p udp --dport 27036 -j ACCEPT; </span><br><span class="line">sudo iptables -I INPUT -p tcp --dport 27036 -j ACCEPT; </span><br><span class="line">sudo iptables -I INPUT -p tcp --dport 27037 -j ACCEPT;&#x27;&quot; &gt;&gt; ~/.bash_aliases</span><br></pre></td></tr></table></figure>
+
+<p>Restart the terminal, you will be able to unblock the network with <code>steamStream</code> command. And make sure your host device and your chromebook are on the same network. You should be able to stream from your PC to your chromebook right now.</p>
+<h2 id="Setup-Sony-Dualshock-4-Wireless-Controller"><a href="#Setup-Sony-Dualshock-4-Wireless-Controller" class="headerlink" title="Setup Sony Dualshock 4 Wireless Controller"></a>Setup Sony Dualshock 4 Wireless Controller</h2><p>I really like the PS4 controllers, you can now use them on almost every devices - your PS4, PC, Mac and Linux. To use them in Linux on Chromebook, I think the best way is to use the <a target="_blank" rel="noopener" href="https://github.com/chrippa/ds4drv">ds4drv</a> package.</p>
+<p>To install this package, we must first install all the dependencies:</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get install python2.7-dev</span><br><span class="line">sudo apt-get install python-setuptools</span><br><span class="line">sudo apt-get install bluez-utils</span><br></pre></td></tr></table></figure>
+
+<p>And then install ds4drv by <code>sudo pip install ds4drv</code>.</p>
+<p>After this, you can pair your controllers. First, turn on the bluetooth on your chromebook in chromeOS, and then switch back to Linux, entering <code>sudo ds4drv</code> in the terminal. Pair the controller by press the share button and PS button together, the light in front of the controller should start blinking, and turn bright blue after successfully paired.</p>
+<p>You can also check how to pair multiple controllers and set the light on the controller on <a target="_blank" rel="noopener" href="https://github.com/chrippa/ds4drv">ds4drv</a> website.</p>
+<p>I’m having trouble with using the the PS4 controller in Big Picture Mode this way. I will update if I managed fix it.</p>
+<h2 id="Enjoy"><a href="#Enjoy" class="headerlink" title="Enjoy!"></a>Enjoy!</h2><p>Every time you want to use this setup, you should</p>
+<ul>
+<li>open up Ubuntu in the shell and start desktop</li>
+<li>Unblock the ports with <code>steamStream</code> in the Linux terminal</li>
+<li>Launch Steam on both chromebook and host machine</li>
+<li>Make sure your bluetooth on the chromebook is enabled and pair the controller after <code>sudo ds4drv</code> commmand</li>
+<li>Start streaming!</li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://z4tech.github.io/2016-12-01/How-to-configure-Linux-Steam-and-PS4-Controller-on-Chromebook/" data-id="cuidycninPnYHBr2K3GTWjReE" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-Update-Node-js" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2016-06-01/Update-Node-js/" class="article-date">
+  <time datetime="2016-06-01T05:40:15.000Z" itemprop="datePublished">2016-06-01</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Node-js/">Node.js</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016-06-01/Update-Node-js/">Update Node.js</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>The fastest way to update Node.js is to use moudule <code>n</code>:</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">npm install -g n</span><br><span class="line">sudo n stable</span><br></pre></td></tr></table></figure>
+
+<p>Updating never gets that easy!</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://z4tech.github.io/2016-06-01/Update-Node-js/" data-id="cuidfdFaOrl51t4nI0jmxirB5" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Node-js/" rel="tag">Node.js</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/update/" rel="tag">update</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-ssh-proxy" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2015-11-21/ssh-proxy/" class="article-date">
+  <time datetime="2015-11-21T08:02:24.000Z" itemprop="datePublished">2015-11-21</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/network/">network</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2015-11-21/ssh-proxy/">Simple Proxy by SSH Tunneling</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>It is unbelievable that some friends with their own VPS don’t know about SSH tunneling. This is a far more easy way to set up a proxy.  </p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh -D port username@server</span><br></pre></td></tr></table></figure>
+
+<p>This command will open up a ssh tunneling service and listen to the local <code>port</code>. So you can just set proxy adress in your browser to <code>localhost:port</code> and everything is done!  </p>
+<p>Have fun!</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://z4tech.github.io/2015-11-21/ssh-proxy/" data-id="cuidYM8x_lm_3cASYn9E4v_Hu" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ssh/" rel="tag">ssh</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-Never-Try-sudo-brew" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2015-09-27/Never-Try-sudo-brew/" class="article-date">
+  <time datetime="2015-09-27T16:41:07.000Z" itemprop="datePublished">2015-09-27</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Misc/">Misc</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2015-09-27/Never-Try-sudo-brew/">sudo brew - Do not Try and How to Recover</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>If someone tries to use <code>brew</code> with <code>sudo</code>, a warning will show up:</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Error: Cowardly refusing to `sudo brew [option]`</span><br><span class="line">You can use brew with sudo, but only if the brew executable is owned by root.</span><br><span class="line">However, this is both not recommended and completely unsupported so do so at</span><br><span class="line">your own risk.</span><br></pre></td></tr></table></figure>
+<p>Well, you may continue to run it after use <code>sudo -i</code>, but you will laterly have many problems. While <code>brew</code> is running under <code>root</code>, it will change the ownership of folders like <code>/usr/local/include</code> to <code>root</code>. And later if you want to run commands like <code>brew link</code>, you will fail:</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Error: Could not symlink include/gdbm.h</span><br><span class="line">/usr/local/include is not writable.</span><br></pre></td></tr></table></figure>
+<p>To recover this, you must change the ownership back:</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo chown -R $(whoami) /usr/local/include</span><br><span class="line">sudo chown -R $(whoami) /usr/local/lib</span><br></pre></td></tr></table></figure>
+<p>And remember: Do not try <code>sudo brew</code> the next time.</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://z4tech.github.io/2015-09-27/Never-Try-sudo-brew/" data-id="cuidw3v5YOlofxCxt2pi9Fr5x" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/brew/" rel="tag">brew</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/sudo/" rel="tag">sudo</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-nodejsStaticServer" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2015-09-26/nodejsStaticServer/" class="article-date">
+  <time datetime="2015-09-27T02:56:08.000Z" itemprop="datePublished">2015-09-26</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Node-js/">Node.js</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2015-09-26/nodejsStaticServer/">Static Server in Node.js</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>From time to time, I need to host some static files to do some local jobs. One possible solution is to set up the config file of the server engine (eg. apache, nginx). However, you need to restart the engine or reload the config file, and you may encounter really annoying some errors. Recently, I found node.js server function is quite useful in doing such things. You can easily set up servers on different ports and easily change the path. Here is the simple code:</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//server.js</span></span><br><span class="line"><span class="keyword">var</span> http = <span class="built_in">require</span>(<span class="string">&#x27;http&#x27;</span>);</span><br><span class="line"><span class="keyword">var</span> parse = <span class="built_in">require</span>(<span class="string">&#x27;url&#x27;</span>).<span class="property">parse</span>;</span><br><span class="line"><span class="keyword">var</span> join = <span class="built_in">require</span>(<span class="string">&#x27;path&#x27;</span>).<span class="property">join</span>;</span><br><span class="line"><span class="keyword">var</span> fs = <span class="built_in">require</span>(<span class="string">&#x27;fs&#x27;</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> root = __dirname + <span class="string">&#x27;/public&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> server = http.<span class="title function_">createServer</span>(<span class="keyword">function</span>(<span class="params">req, res</span>)&#123;</span><br><span class="line">  <span class="keyword">var</span> url = <span class="title function_">parse</span>(req.<span class="property">url</span>);</span><br><span class="line">  <span class="keyword">var</span> path = <span class="title function_">join</span>(root, url.<span class="property">pathname</span>);</span><br><span class="line">  <span class="keyword">var</span> stream = fs.<span class="title function_">createReadStream</span>(path);</span><br><span class="line">  stream.<span class="title function_">on</span>(<span class="string">&#x27;error&#x27;</span>, <span class="keyword">function</span>(<span class="params">err</span>)&#123;</span><br><span class="line">    res.<span class="property">statusCode</span> = <span class="number">500</span>;</span><br><span class="line">    res.<span class="title function_">end</span>(<span class="string">&#x27;Internal Server Error&#x27;</span>);</span><br><span class="line">  &#125;);</span><br><span class="line">  stream.<span class="title function_">on</span>(<span class="string">&#x27;data&#x27;</span>, <span class="keyword">function</span>(<span class="params">chunk</span>)&#123;</span><br><span class="line">    res.<span class="title function_">write</span>(chunk);</span><br><span class="line">  &#125;);</span><br><span class="line">  stream.<span class="title function_">on</span>(<span class="string">&#x27;end&#x27;</span>, <span class="keyword">function</span>(<span class="params"></span>)&#123;</span><br><span class="line">    res.<span class="title function_">end</span>();</span><br><span class="line">  &#125;);</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">server.<span class="title function_">listen</span>(<span class="number">3000</span>);</span><br></pre></td></tr></table></figure> 
+<p>Just put your files in the <code>\public</code> folder and run <code>node server.js</code>. All things are done! You can check them out on <code>localhost:3000</code>.<br>A more elegant way is to utilize the <code>pipe()</code> mechanism:</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//server.js</span></span><br><span class="line"><span class="keyword">var</span> http = <span class="built_in">require</span>(<span class="string">&#x27;http&#x27;</span>);</span><br><span class="line"><span class="keyword">var</span> parse = <span class="built_in">require</span>(<span class="string">&#x27;url&#x27;</span>).<span class="property">parse</span>;</span><br><span class="line"><span class="keyword">var</span> join = <span class="built_in">require</span>(<span class="string">&#x27;path&#x27;</span>).<span class="property">join</span>;</span><br><span class="line"><span class="keyword">var</span> fs = <span class="built_in">require</span>(<span class="string">&#x27;fs&#x27;</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> root = __dirname + <span class="string">&#x27;/public&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> server = http.<span class="title function_">createServer</span>(<span class="keyword">function</span>(<span class="params">req, res</span>)&#123;</span><br><span class="line">  <span class="keyword">var</span> url = <span class="title function_">parse</span>(req.<span class="property">url</span>);</span><br><span class="line">  <span class="keyword">var</span> path = <span class="title function_">join</span>(root, url.<span class="property">pathname</span>);</span><br><span class="line">  <span class="keyword">var</span> stream = fs.<span class="title function_">createReadStream</span>(path);</span><br><span class="line">  stream.<span class="title function_">pipe</span>(res);</span><br><span class="line">  stream.<span class="title function_">on</span>(<span class="string">&#x27;error&#x27;</span>, <span class="keyword">function</span>(<span class="params">err</span>)&#123;</span><br><span class="line">    res.<span class="property">statusCode</span> = <span class="number">500</span>;</span><br><span class="line">    res.<span class="title function_">end</span>(<span class="string">&#x27;Internal Server Error&#x27;</span>);</span><br><span class="line">  &#125;);</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">server.<span class="title function_">listen</span>(<span class="number">3000</span>);</span><br><span class="line"></span><br></pre></td></tr></table></figure> 
+
+<p>Very easy isn’t it?</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://z4tech.github.io/2015-09-26/nodejsStaticServer/" data-id="cuidTzj55KCPJKpYOMIBOKHuT" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Node-js/" rel="tag">Node.js</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Static-Server/" rel="tag">Static Server</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-Anki2Gitbook" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2015-09-01/Anki2Gitbook/" class="article-date">
+  <time datetime="2015-09-01T20:42:41.000Z" itemprop="datePublished">2015-09-01</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Misc/">Misc</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2015-09-01/Anki2Gitbook/">Convert Anki Flashcards into Gitbook</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>Anki is a great flashcard tool for memorizing new words, and here how to convert the flashcard desk in anki to wordlists in pdf, epub and html.  This procedure is done on Mac OSX 10.10, and probably work similarly on other Unix system.</p>
+<p>Recently I’ve been working on GRE vocabulary, and Anki is a well-known multi-platform app for this. There are many great sets of cards and sometimes you just want to use them else where such as creating some wordlist. And this time, I need some wordlists from GRE3000, a popular book in China. I bought the printed version, but it is in alphabetical order. Luckily someone has made an Anki desk for it!</p>
+<p>The vocabulary desks <code>.apkg</code> files are just <code>.zip</code> packages, you can just unzip it with command line:  </p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">unzip the_desk_name.apkg</span><br></pre></td></tr></table></figure>  
+<p>There are several files there, what we need is the <code>.anki2</code> file which is basically a sqlite database. Change the extension to sqlite and you can do anything with it! I just open it up with the Firefox extension - SQLite Manager.  </p>
+<p><img src="http://7xlifa.com1.z0.glb.clouddn.com/imganki-sql.png" alt="img SQLite Manager"></p>
+<p>Run the following SQL query to get the data we need, and then save it as csv(with or without header).</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">SELECT sfld, flds FROM notes</span><br></pre></td></tr></table></figure>  
+
+<p>Then we need to set up the <code>gitbook</code> engine. Firstly, nodejs and npm is needed, following the guide on the <a target="_blank" rel="noopener" href="http://nodejs.org/">website</a>. And then install gitbook-cli and initialize a project.</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">npm install gitbook-cli -g</span><br><span class="line">cd your_workspace</span><br><span class="line">mkdir book</span><br><span class="line">cd book</span><br><span class="line">gitbook init</span><br><span class="line">cp list.csv .</span><br></pre></td></tr></table></figure>  
+
+<p>And then, I wrote a ruby script to generate the markdown files needed to create the book.</p>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">require</span> <span class="string">&#x27;csv&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#size of the wordlists</span></span><br><span class="line">list_size = <span class="number">20.0</span></span><br><span class="line">words = <span class="variable constant_">CSV</span>.read(<span class="string">&#x27;list.csv&#x27;</span>)</span><br><span class="line">words.delete_at(<span class="number">0</span>)  <span class="comment">#if there is a header line</span></span><br><span class="line">words = words.shuffle</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">summary = <span class="title class_">File</span>.new(<span class="string">&#x27;SUMMARY.md&#x27;</span>, <span class="string">&#x27;w&#x27;</span>)</span><br><span class="line">summary.puts <span class="string">&quot;#Content\n&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> <span class="number">1</span>..(words.length/list_size).ceil</span><br><span class="line">  file = <span class="title class_">File</span>.new(<span class="string">&#x27;./src/List&#x27;</span>+i.to_s+<span class="string">&#x27;.md&#x27;</span>, <span class="string">&#x27;w&#x27;</span>)</span><br><span class="line">  file.puts <span class="string">&quot;#List<span class="subst">#&#123;i&#125;</span>&quot;</span></span><br><span class="line">  summary.puts <span class="string">&quot;* [List<span class="subst">#&#123;i&#125;</span>](src/List<span class="subst">#&#123;i&#125;</span>.md)  &quot;</span></span><br><span class="line">  </span><br><span class="line">  <span class="comment">#you might need to change this part to fit different desks</span></span><br><span class="line">  <span class="keyword">for</span> i <span class="keyword">in</span> <span class="number">1</span>..list_size</span><br><span class="line">    file.puts <span class="string">&quot;\n\n---\n\n&quot;</span> <span class="keyword">unless</span> i == <span class="number">1</span></span><br><span class="line">    content = words.shift()</span><br><span class="line">    <span class="keyword">if</span> content.<span class="literal">nil</span>?</span><br><span class="line">      <span class="keyword">break</span></span><br><span class="line">    <span class="keyword">end</span></span><br><span class="line">    file.puts content[<span class="number">1</span>]</span><br><span class="line">  <span class="keyword">end</span></span><br><span class="line">  file.close</span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line">summary.close</span><br></pre></td></tr></table></figure>  
+
+<p>Save this script and execute it at the folder. And don’t forget to write something in the <code>README.md</code>. Now you can use <code>gitbook serve</code> to see the web version of the book.  </p>
+<p>To make a file version, we need to <a target="_blank" rel="noopener" href="http://calibre-ebook.com/download">download</a> and install <code>Calibre</code> and use the <code>ebook-convert</code> tool inside. For Mac OSX, we need to add the tool to the <code>$PATH</code>.</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">export PATH=$PATH:/Applications/calibre.app/Contents/MacOS</span><br></pre></td></tr></table></figure>  
+
+<p>Finally, we shall compile the book!</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">cd ..</span><br><span class="line">gitbook epub /book</span><br></pre></td></tr></table></figure>  
+<p>And then you’ll see the book inside your work folder.</p>
+<p>Have fun!</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://z4tech.github.io/2015-09-01/Anki2Gitbook/" data-id="cuid2xiPPbhqRD2aDCq-4MGXE" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/gitbook/" rel="tag">gitbook</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ruby/" rel="tag">ruby</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-hello" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2015-08-26/hello/" class="article-date">
+  <time datetime="2015-08-26T14:48:28.000Z" itemprop="datePublished">2015-08-26</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2015-08-26/hello/">Hello, World!</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>This is my technical blog where I save my work and progress. Hope it will be helpful for someone, especially you.  </p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://z4tech.github.io/2015-08-26/hello/" data-id="cuidjY-ndk1fcJRr3ZspUzWsy" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+  
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Misc/">Misc</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Node-js/">Node.js</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/network/">network</a><span class="category-list-count">1</span></li></ul>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Node-js/" rel="tag">Node.js</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Static-Server/" rel="tag">Static Server</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/brew/" rel="tag">brew</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/gitbook/" rel="tag">gitbook</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ruby/" rel="tag">ruby</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ssh/" rel="tag">ssh</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/sudo/" rel="tag">sudo</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/update/" rel="tag">update</a><span class="tag-list-count">1</span></li></ul>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/Node-js/" style="font-size: 20px;">Node.js</a> <a href="/tags/Static-Server/" style="font-size: 10px;">Static Server</a> <a href="/tags/brew/" style="font-size: 10px;">brew</a> <a href="/tags/gitbook/" style="font-size: 10px;">gitbook</a> <a href="/tags/ruby/" style="font-size: 10px;">ruby</a> <a href="/tags/ssh/" style="font-size: 10px;">ssh</a> <a href="/tags/sudo/" style="font-size: 10px;">sudo</a> <a href="/tags/update/" style="font-size: 10px;">update</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/12/">December 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/06/">June 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/11/">November 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/09/">September 2015</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/08/">August 2015</a><span class="archive-list-count">1</span></li></ul>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recents</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2016-12-01/How-to-configure-Linux-Steam-and-PS4-Controller-on-Chromebook/">How to configure Linux, Steam In-Home Streaming and PS4 Controller on Chromebook</a>
+          </li>
+        
+          <li>
+            <a href="/2016-06-01/Update-Node-js/">Update Node.js</a>
+          </li>
+        
+          <li>
+            <a href="/2015-11-21/ssh-proxy/">Simple Proxy by SSH Tunneling</a>
+          </li>
+        
+          <li>
+            <a href="/2015-09-27/Never-Try-sudo-brew/">sudo brew - Do not Try and How to Recover</a>
+          </li>
+        
+          <li>
+            <a href="/2015-09-26/nodejsStaticServer/">Static Server in Node.js</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2025 Z4Tech<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+<a class="main-nav-link" target="_blank" rel="noopener" href="http://www.zhangchenguang1994.net/">WelcomePage</a>
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+  
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+  </div>
+</body>
+</html>
