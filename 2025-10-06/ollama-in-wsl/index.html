@@ -3,15 +3,20 @@
 <head>
   <meta charset="utf-8">
   
-  <title>Tag: Static Server | Z4Tech Interface</title>
+  <title>How to run Ollama in Windows via WSL | Z4Tech Interface</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="Z4Tech Interface">
-<meta property="og:url" content="http://z4tech.github.io/tags/Static-Server/">
+  <meta name="description" content="After completing the steps in CUDA in WSL, you’re ready to install Ollama and run large language models directly in your WSL distro. Installing Ollama in WSLOllama provides a simple installation scrip">
+<meta property="og:type" content="article">
+<meta property="og:title" content="How to run Ollama in Windows via WSL">
+<meta property="og:url" content="http://z4tech.github.io/2025-10-06/ollama-in-wsl/">
 <meta property="og:site_name" content="Z4Tech Interface">
+<meta property="og:description" content="After completing the steps in CUDA in WSL, you’re ready to install Ollama and run large language models directly in your WSL distro. Installing Ollama in WSLOllama provides a simple installation scrip">
 <meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2025-10-06T05:04:35.000Z">
+<meta property="article:modified_time" content="2025-10-06T05:38:25.459Z">
 <meta property="article:author" content="Z4Tech">
-<meta property="article:tag" content="Z4Tech, Technology, Blog">
+<meta property="article:tag" content="ai">
+<meta property="article:tag" content="llm">
 <meta name="twitter:card" content="summary">
   
     <link rel="alternative" href="/atom.xml" title="Z4Tech Interface" type="application/atom+xml">
@@ -59,39 +64,92 @@
 </header>
 
       <div class="outer">
-        <section id="main">
-  
-  
-    
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2015" class="archive-year">2015</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2015-09-26/nodejsStaticServer/" class="archive-article-date">
-  <time datetime="2015-09-27T02:56:08.000Z" itemprop="datePublished">Sep 26</time>
+        <section id="main"><article id="post-ollama-in-wsl" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2025-10-06/ollama-in-wsl/" class="article-date">
+  <time datetime="2025-10-06T05:04:35.000Z" itemprop="datePublished">2025-10-06</time>
 </a>
-      
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/wsl/">wsl</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2015-09-26/nodejsStaticServer/">Static Server in Node.js</a>
+    <h1 class="article-title" itemprop="name">
+      How to run Ollama in Windows via WSL
     </h1>
   
 
-    </header>
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>After completing the steps in <a href="/2025-10-05/cuda-in-wsl/" title="Setting Up CUDA in WSL">CUDA in WSL</a>, you’re ready to install Ollama and run large language models directly in your WSL distro.</p>
+<h2 id="Installing-Ollama-in-WSL"><a href="#Installing-Ollama-in-WSL" class="headerlink" title="Installing Ollama in WSL"></a>Installing Ollama in WSL</h2><p>Ollama provides a simple installation script. Open your WSL terminal and run:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">curl https://ollama.ai/install.sh | sh</span><br></pre></td></tr></table></figure>
+
+<p>This will download and install Ollama, setting up everything you need to get started.</p>
+<h2 id="Running-Your-First-Model"><a href="#Running-Your-First-Model" class="headerlink" title="Running Your First Model"></a>Running Your First Model</h2><p>To verify your installation, try running a lightweight model. Qwen3 is a great choice for quick testing:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ollama run qwen3:0.6b</span><br></pre></td></tr></table></figure>
+
+<p>Ollama will automatically download the model and start an interactive session. You can now chat with Qwen3 directly from your terminal.</p>
+<h2 id="Verifying-GPU-Usage-in-Ollama"><a href="#Verifying-GPU-Usage-in-Ollama" class="headerlink" title="Verifying GPU Usage in Ollama"></a>Verifying GPU Usage in Ollama</h2><p>To confirm that Ollama is utilizing your GPU (after a successful CUDA installation), run the following command in your WSL terminal:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ollama ps</span><br></pre></td></tr></table></figure>
+
+<p>This will display the status of running models and indicate whether the GPU is being used. If not, double-check your CUDA setup and ensure your WSL distro has access to the GPU.</p>
+<h2 id="Tips"><a href="#Tips" class="headerlink" title="Tips"></a>Tips</h2><ul>
+<li>Make sure your WSL distro has access to your GPU for best performance (see the CUDA setup post).</li>
+<li>Explore other models available on <a target="_blank" rel="noopener" href="https://ollama.ai/library">Ollama’s model library</a>.</li>
+<li>For advanced usage, check out Ollama’s documentation for API integration and custom model management.</li>
+</ul>
+<p>Enjoy running LLMs locally in WSL!</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://z4tech.github.io/2025-10-06/ollama-in-wsl/" data-id="cuids3DY6uasIysL1iNpJn2l6" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ai/" rel="tag">ai</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/llm/" rel="tag">llm</a></li></ul>
+
+    </footer>
   </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2025-10-05/cuda-in-wsl/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">Setting Up CUDA in WSL</div>
+    </a>
+  
+</nav>
+
+  
 </article>
-  
-  
-    </div></section>
-  
+
+
+
+<div id="disqus_thread"></div>
+<script type="text/javascript">
+    /* * * CONFIGURATION VARIABLES * * */
+    var disqus_shortname = 'z4techinterface';
+
+    /* * * DON'T EDIT BELOW THIS LINE * * */
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a target="_blank" href="https://disqus.com/?ref_noscript" rel="nofollow noopener">comments powered by Disqus.</a></noscript>
 </section>
         
           <aside id="sidebar">
