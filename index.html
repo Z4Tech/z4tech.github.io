@@ -61,6 +61,79 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-cuda-in-wsl" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2025-10-05/cuda-in-wsl/" class="article-date">
+  <time datetime="2025-10-06T03:40:09.000Z" itemprop="datePublished">2025-10-05</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/wsl/">wsl</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2025-10-05/cuda-in-wsl/">cuda_in_wsl</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="Setting-Up-CUDA-in-WSL-A-Step-by-Step-Guide"><a href="#Setting-Up-CUDA-in-WSL-A-Step-by-Step-Guide" class="headerlink" title="Setting Up CUDA in WSL: A Step-by-Step Guide"></a>Setting Up CUDA in WSL: A Step-by-Step Guide</h1><p>Running CUDA on native Linux is possible, but NVIDIA driver support can be inconsistent across distributions. Using CUDA in Windows Subsystem for Linux (WSL) offers a reliable alternative, providing direct driver support and a smoother experience for AI development.</p>
+<h2 id="Prerequisites"><a href="#Prerequisites" class="headerlink" title="Prerequisites"></a>Prerequisites</h2><ul>
+<li>Windows 10&#x2F;11 with WSL enabled</li>
+<li>An NVIDIA GPU with driver support for CUDA</li>
+</ul>
+<h2 id="1-Install-or-Import-a-WSL-Distro"><a href="#1-Install-or-Import-a-WSL-Distro" class="headerlink" title="1. Install or Import a WSL Distro"></a>1. Install or Import a WSL Distro</h2><p>If you don’t have WSL installed, run the following command in PowerShell as administrator:</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">wsl --install</span><br></pre></td></tr></table></figure>
+
+<p>If you want to use a fresh Ubuntu WSL image, download it from <a target="_blank" rel="noopener" href="https://cloud-images.ubuntu.com/wsl/">Ubuntu WSL Images</a> and import it to a new folder:</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">wsl --import &lt;NewDistroName&gt; &lt;InstallLocation&gt; &lt;PathToTarFile&gt; [--version &lt;Version&gt;]</span><br></pre></td></tr></table></figure>
+
+<p>After importing, launch your new distro:</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">wsl -d &lt;DistroName&gt;</span><br></pre></td></tr></table></figure>
+
+<p>By default, you’ll log in as <code>root</code>. You can create a regular user later if needed.</p>
+<h2 id="2-Update-and-Prepare-the-System"><a href="#2-Update-and-Prepare-the-System" class="headerlink" title="2. Update and Prepare the System"></a>2. Update and Prepare the System</h2><p>No need to install the NVIDIA driver inside WSL; just install the CUDA toolkit. First, update your package sources:</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get update</span><br><span class="line">sudo apt-get upgrade</span><br></pre></td></tr></table></figure>
+
+<p>Remove any old NVIDIA GPG keys:</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-key del 7fa2af80</span><br></pre></td></tr></table></figure>
+
+<h2 id="3-Install-CUDA-Toolkit-for-WSL-Ubuntu"><a href="#3-Install-CUDA-Toolkit-for-WSL-Ubuntu" class="headerlink" title="3. Install CUDA Toolkit for WSL-Ubuntu"></a>3. Install CUDA Toolkit for WSL-Ubuntu</h2><p>Download and install the CUDA toolkit using the official NVIDIA repository. Here’s how to use the <code>deb(network)</code> installer:</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">wget https://developer.download.nvidia.com/compute/cuda/repos/wsl-ubuntu/x86_64/cuda-keyring_1.1-1_all.deb</span><br><span class="line">sudo dpkg -i cuda-keyring_1.1-1_all.deb</span><br><span class="line">sudo apt-get update</span><br><span class="line">sudo apt-get -y install cuda-toolkit-13-0</span><br></pre></td></tr></table></figure>
+
+<h2 id="4-Verify-Installation"><a href="#4-Verify-Installation" class="headerlink" title="4. Verify Installation"></a>4. Verify Installation</h2><p>Check if the CUDA compiler is installed:</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nvcc --version</span><br></pre></td></tr></table></figure>
+
+<p>To verify your CUDA and driver versions:</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nvidia-smi</span><br></pre></td></tr></table></figure>
+
+<h2 id="Conclusion"><a href="#Conclusion" class="headerlink" title="Conclusion"></a>Conclusion</h2><p>With these steps, you should have a working CUDA environment in WSL, ready for AI and GPU-accelerated development. If you encounter issues, refer to the <a target="_blank" rel="noopener" href="https://docs.nvidia.com/cuda/wsl-user-guide/index.html">NVIDIA CUDA on WSL documentation</a> for troubleshooting tips.</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://z4tech.github.io/2025-10-05/cuda-in-wsl/" data-id="cuidGs1uKuRPAsI3NxdFhi7y8" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ai/" rel="tag">ai</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/cuda/" rel="tag">cuda</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
     <article id="post-How-to-configure-Linux-Steam-and-PS4-Controller-on-Chromebook" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2016-12-01/How-to-configure-Linux-Steam-and-PS4-Controller-on-Chromebook/" class="article-date">
@@ -133,7 +206,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://z4tech.github.io/2016-12-01/How-to-configure-Linux-Steam-and-PS4-Controller-on-Chromebook/" data-id="cuidycninPnYHBr2K3GTWjReE" class="article-share-link">Share</a>
+      <a data-url="http://z4tech.github.io/2016-12-01/How-to-configure-Linux-Steam-and-PS4-Controller-on-Chromebook/" data-id="cuidqh0GTec3jCMoNvHkLd1vO" class="article-share-link">Share</a>
       
       
     </footer>
@@ -177,7 +250,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://z4tech.github.io/2016-06-01/Update-Node-js/" data-id="cuidfdFaOrl51t4nI0jmxirB5" class="article-share-link">Share</a>
+      <a data-url="http://z4tech.github.io/2016-06-01/Update-Node-js/" data-id="cuidMgCsh6WssM6rThVEjNiRG" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Node-js/" rel="tag">Node.js</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/update/" rel="tag">update</a></li></ul>
@@ -224,7 +297,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://z4tech.github.io/2015-11-21/ssh-proxy/" data-id="cuidYM8x_lm_3cASYn9E4v_Hu" class="article-share-link">Share</a>
+      <a data-url="http://z4tech.github.io/2015-11-21/ssh-proxy/" data-id="cuidKFMNjDRT0uF5DEvwcsvN6" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ssh/" rel="tag">ssh</a></li></ul>
@@ -273,7 +346,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://z4tech.github.io/2015-09-27/Never-Try-sudo-brew/" data-id="cuidw3v5YOlofxCxt2pi9Fr5x" class="article-share-link">Share</a>
+      <a data-url="http://z4tech.github.io/2015-09-27/Never-Try-sudo-brew/" data-id="cuidi_uh5BcDsQYeM6FgvIsWl" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/brew/" rel="tag">brew</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/sudo/" rel="tag">sudo</a></li></ul>
@@ -321,7 +394,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://z4tech.github.io/2015-09-26/nodejsStaticServer/" data-id="cuidTzj55KCPJKpYOMIBOKHuT" class="article-share-link">Share</a>
+      <a data-url="http://z4tech.github.io/2015-09-26/nodejsStaticServer/" data-id="cuidIS1m-Q1yq0Jzyfzv-dJ4g" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Node-js/" rel="tag">Node.js</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Static-Server/" rel="tag">Static Server</a></li></ul>
@@ -386,7 +459,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://z4tech.github.io/2015-09-01/Anki2Gitbook/" data-id="cuid2xiPPbhqRD2aDCq-4MGXE" class="article-share-link">Share</a>
+      <a data-url="http://z4tech.github.io/2015-09-01/Anki2Gitbook/" data-id="cuidBYT-YXnMwx4KaCqF0Ye7U" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/gitbook/" rel="tag">gitbook</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ruby/" rel="tag">ruby</a></li></ul>
@@ -425,7 +498,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://z4tech.github.io/2015-08-26/hello/" data-id="cuidjY-ndk1fcJRr3ZspUzWsy" class="article-share-link">Share</a>
+      <a data-url="http://z4tech.github.io/2015-08-26/hello/" data-id="cuidOhyP4MwUndGq8ALs7btu5" class="article-share-link">Share</a>
       
       
     </footer>
@@ -444,7 +517,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Categories</h3>
     <div class="widget">
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Misc/">Misc</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Node-js/">Node.js</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/network/">network</a><span class="category-list-count">1</span></li></ul>
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Misc/">Misc</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Node-js/">Node.js</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/network/">network</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/wsl/">wsl</a><span class="category-list-count">1</span></li></ul>
     </div>
   </div>
 
@@ -453,7 +526,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Tags</h3>
     <div class="widget">
-      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Node-js/" rel="tag">Node.js</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Static-Server/" rel="tag">Static Server</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/brew/" rel="tag">brew</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/gitbook/" rel="tag">gitbook</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ruby/" rel="tag">ruby</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ssh/" rel="tag">ssh</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/sudo/" rel="tag">sudo</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/update/" rel="tag">update</a><span class="tag-list-count">1</span></li></ul>
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Node-js/" rel="tag">Node.js</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Static-Server/" rel="tag">Static Server</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ai/" rel="tag">ai</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/brew/" rel="tag">brew</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/cuda/" rel="tag">cuda</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/gitbook/" rel="tag">gitbook</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ruby/" rel="tag">ruby</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ssh/" rel="tag">ssh</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/sudo/" rel="tag">sudo</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/update/" rel="tag">update</a><span class="tag-list-count">1</span></li></ul>
     </div>
   </div>
 
@@ -462,7 +535,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Tag Cloud</h3>
     <div class="widget tagcloud">
-      <a href="/tags/Node-js/" style="font-size: 20px;">Node.js</a> <a href="/tags/Static-Server/" style="font-size: 10px;">Static Server</a> <a href="/tags/brew/" style="font-size: 10px;">brew</a> <a href="/tags/gitbook/" style="font-size: 10px;">gitbook</a> <a href="/tags/ruby/" style="font-size: 10px;">ruby</a> <a href="/tags/ssh/" style="font-size: 10px;">ssh</a> <a href="/tags/sudo/" style="font-size: 10px;">sudo</a> <a href="/tags/update/" style="font-size: 10px;">update</a>
+      <a href="/tags/Node-js/" style="font-size: 20px;">Node.js</a> <a href="/tags/Static-Server/" style="font-size: 10px;">Static Server</a> <a href="/tags/ai/" style="font-size: 10px;">ai</a> <a href="/tags/brew/" style="font-size: 10px;">brew</a> <a href="/tags/cuda/" style="font-size: 10px;">cuda</a> <a href="/tags/gitbook/" style="font-size: 10px;">gitbook</a> <a href="/tags/ruby/" style="font-size: 10px;">ruby</a> <a href="/tags/ssh/" style="font-size: 10px;">ssh</a> <a href="/tags/sudo/" style="font-size: 10px;">sudo</a> <a href="/tags/update/" style="font-size: 10px;">update</a>
     </div>
   </div>
 
@@ -471,7 +544,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Archives</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/12/">December 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/06/">June 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/11/">November 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/09/">September 2015</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/08/">August 2015</a><span class="archive-list-count">1</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2025/10/">October 2025</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/12/">December 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/06/">June 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/11/">November 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/09/">September 2015</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/08/">August 2015</a><span class="archive-list-count">1</span></li></ul>
     </div>
   </div>
 
@@ -481,6 +554,10 @@
     <h3 class="widget-title">Recents</h3>
     <div class="widget">
       <ul>
+        
+          <li>
+            <a href="/2025-10-05/cuda-in-wsl/">cuda_in_wsl</a>
+          </li>
         
           <li>
             <a href="/2016-12-01/How-to-configure-Linux-Steam-and-PS4-Controller-on-Chromebook/">How to configure Linux, Steam In-Home Streaming and PS4 Controller on Chromebook</a>
@@ -496,10 +573,6 @@
         
           <li>
             <a href="/2015-09-27/Never-Try-sudo-brew/">sudo brew - Do not Try and How to Recover</a>
-          </li>
-        
-          <li>
-            <a href="/2015-09-26/nodejsStaticServer/">Static Server in Node.js</a>
           </li>
         
       </ul>
